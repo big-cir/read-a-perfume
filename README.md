@@ -19,6 +19,11 @@ Read A Perfume은 향수에 대한 리뷰를 남길 수 있는 플랫폼으로, 
 <br>
 <br>
 
+## API 명세 (RestDocs)
+[restDocs Link](https://rawcdn.githack.com/Big-Cir97/read-a-perfume/31ec920f39441def54df4bd25965724383f13185/images/index.html)
+
+<br>
+
 ## ⚒️ 사용 툴
 - Java 17
 - Spring Boot
