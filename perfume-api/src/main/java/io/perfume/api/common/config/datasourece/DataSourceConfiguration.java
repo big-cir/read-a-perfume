@@ -20,6 +20,7 @@ import static io.perfume.api.common.config.datasourece.DataSourceType.MASTER;
 import static io.perfume.api.common.config.datasourece.DataSourceType.SLAVE;
 import static io.perfume.api.common.config.datasourece.DataSourceType.type.*;
 
+@Deprecated
 @Configuration
 public class DataSourceConfiguration {
 

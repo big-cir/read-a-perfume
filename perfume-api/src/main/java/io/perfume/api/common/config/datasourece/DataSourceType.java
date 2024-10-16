@@ -3,7 +3,7 @@ package io.perfume.api.common.config.datasourece;
 import static io.perfume.api.common.config.datasourece.DataSourceType.type.MASTER_NAME;
 import static io.perfume.api.common.config.datasourece.DataSourceType.type.SLAVE_NAME;
 
-
+@Deprecated
 public enum DataSourceType {
 
     MASTER(MASTER_NAME),

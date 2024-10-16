@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.datasource.lookup.AbstractRoutingDataSource;
 import org.springframework.transaction.support.TransactionSynchronizationManager;
 
+@Deprecated
 public class RoutingDataSource extends AbstractRoutingDataSource {
 
     private final Logger log = LoggerFactory.getLogger(getClass());
