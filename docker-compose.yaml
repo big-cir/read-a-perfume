@@ -18,7 +18,7 @@ services:
 
   redis:
     image: redis:latest
-    container_name: perfume_redis#
+    container_name: perfume_redis
     ports:
       - '6379:6379'
     command: ["redis-server", "--appendonly", "yes", "--requirepass", "very-strong-local-redis-password!@#$!%!@#"]
@@ -26,6 +26,16 @@ services:
       - redis_data:/data
     networks:
       - perfume_network
+
+  proxysql:
+    image: proxysql/proxysql
+    container_name: perfume_proxysql
+    networks:
+      - perfume_network
+    ports:
+      - 16032:6032
+      - 16033:6033
+      - 16070:6070
 
 volumes:
   mysql_data:
