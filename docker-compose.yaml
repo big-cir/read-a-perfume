@@ -33,9 +33,19 @@ services:
     networks:
       - perfume_network
     ports:
-      - 16032:6032
-      - 16033:6033
-      - 16070:6070
+      - '16032:6032'
+      - '16033:6033'
+      - '16070:6070'
+
+  orchestrator:
+    image: openarkcode/orchestrator:latest
+    container_name: orchestrator
+    hostname: orchestrator
+    ports:
+      - '3001:3000'
+    networks:
+      - perfume_network
+    restart: always
 
 volumes:
   mysql_data:
