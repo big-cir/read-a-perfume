@@ -42,21 +42,7 @@ dependencies {
 
     implementation(platform("software.amazon.awssdk:bom:2.17.230"))
     implementation("software.amazon.awssdk:s3:2.20.68")
-
-    // batch
     implementation ("org.springframework.boot:spring-boot-starter-batch")
-
-    // ES 의존성
-    implementation("org.springframework.boot:spring-boot-starter-data-elasticsearch")
-    implementation("org.elasticsearch.client:elasticsearch-rest-high-level-client:7.17.9")
-    implementation("org.elasticsearch.client:elasticsearch-rest-client:8.6.2")
-    implementation("org.elasticsearch:elasticsearch:8.6.2")
-
-    // 모니터링을 위한 의존성 (프로메테우스, actuator)
-    implementation ("org.springframework.boot:spring-boot-starter-actuator")
-    implementation ("io.micrometer:micrometer-registry-prometheus")
-
-    // circuit breaker
     implementation ("org.springframework.cloud:spring-cloud-starter-circuitbreaker-resilience4j:3.1.0")
 }
 

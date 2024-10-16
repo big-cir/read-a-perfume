@@ -2,21 +2,17 @@ spring:
   config:
     activate:
       on-profile: 'default'
+
   cache:
     type: redis
     redis:
       cache-null-values: true
+
   datasource:
-    master:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: jdbc:mysql://${MASTER_DB_HOST}:${MASTER_DB_PORT}/${MASTER_DB_NAME}
-      username: ${MASTER_DB_USERNAME}
-      password: ${MASTER_DB_PASSWORD}
-    slave:
-      driver-class-name: com.mysql.cj.jdbc.Driver
-      jdbc-url: jdbc:mysql://${SLAVE_DB_HOST}:${SLAVE_DB_PORT}/${SLAVE_DB_NAME}
-      username: ${SLAVE_DB_USERNAME}
-      password: ${SLAVE_DB_PASSWORD}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${MASTER_DB_HOST}:${MASTER_DB_PORT}/${MASTER_DB_NAME}
+    username: ${MASTER_DB_USERNAME}
+    password: ${MASTER_DB_PASSWORD}
 
     hikari:
       maximum-pool-size: 24
@@ -26,6 +22,7 @@ spring:
       connection-timeout: 15000
       leak-detection-threshold: 60000
       pool-name: 'perfume-db-pool'
+
   jpa:
     hibernate:
       ddl-auto: update
@@ -33,12 +30,14 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.MySQLDialect
+
   batch:
     jdbc:
       initialize-schema: always
       isolation-level-for-create: default
     job:
       enabled: false
+
   data:
     redis:
       primary:
@@ -50,12 +49,10 @@ spring:
         port: ${C_REDIS_PORT}
         password: ${C_REDIS_AUTH_PASSWORD}
 
-    elasticsearch:
-      repositories:
-        enabled: true
     web:
       pageable:
         one-indexed-parameters: true
+
   security:
     oauth2:
       client:
@@ -66,6 +63,7 @@ spring:
             scope:
               - profile
               - email
+
   mail:
     host: 'smtp.gmail.com'
     port: 587
@@ -78,6 +76,7 @@ spring:
           timeout: 5000
           starttls:
             enable: true
+
 whitelist:
   cors:
     - http://localhost:3000
@@ -93,6 +92,8 @@ encryption:
     secret-key: 'readaperfumesecretkeyhelloletsmakegoodthings'
 
 flyway:
+  driver-class-name: com.mysql.cj.jdbc.Driver
+  jdbc-url: jdbc:mysql://${MASTER_DB_HOST}:${MASTER_DB_HOST}/${MASTER_DB_HOST}
   enabled: false
   validate-on-migrate: false
 
@@ -109,6 +110,8 @@ logging:
       hibernate:
         SQL: debug
       springframework:
+        transaction:
+        #interceptor: trace
         data:
           elasticsearch:
             client:
@@ -118,6 +121,8 @@ resilience4j:
   circuitbreaker:
     configs:
       default:
+        wait-duration-in-open-state:
+          seconds: 10000
         slidingWindowType: COUNT_BASED
         slidingWindowSize: 10
         failureRateThreshold: 50

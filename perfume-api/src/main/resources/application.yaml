@@ -4,6 +4,8 @@ spring:
       default: 'common'
       dev: 'common'
       prod: 'common'
+    include:
+      - support
 
 ---
 
@@ -19,6 +21,7 @@ spring:
   config:
     activate:
       on-profile: 'common'
+
   jpa:
     open-in-view: false
     hibernate:

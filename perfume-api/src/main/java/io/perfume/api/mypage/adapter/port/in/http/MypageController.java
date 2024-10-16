@@ -34,10 +34,10 @@ public class MypageController {
   private final FindCategoryUseCase findCategoryUseCase;
 
   public MypageController(
-      FollowUserUseCase followUserUseCase,
-      GetFollowCountUseCase getFollowCountUseCase,
-      GetReviewCountUseCase getReviewCountUseCase,
-      FindCategoryUseCase findCategoryUseCase) {
+          FollowUserUseCase followUserUseCase,
+          GetFollowCountUseCase getFollowCountUseCase,
+          GetReviewCountUseCase getReviewCountUseCase,
+          FindCategoryUseCase findCategoryUseCase) {
     this.followUserUseCase = followUserUseCase;
     this.getFollowCountUseCase = getFollowCountUseCase;
     this.getReviewCountUseCase = getReviewCountUseCase;
@@ -57,7 +57,7 @@ public class MypageController {
     var followingCount = getFollowCountUseCase.getFollowingCountByUserId(userId);
 
     return ResponseEntity.status(HttpStatus.OK)
-        .body(new FollowCountResponseDto(followerCount, followingCount));
+            .body(new FollowCountResponseDto(followerCount, followingCount));
   }
 
   @GetMapping("/{id}/reviews")
@@ -72,6 +72,6 @@ public class MypageController {
   public ResponseEntity<List<CategoryResult>> getCategories(@AuthenticationPrincipal User user) {
     var userId = Long.parseLong(user.getUsername());
 
-    return ResponseEntity.status(HttpStatus.OK).body(findCategoryUseCase.findTasteByUserId(userId));
+    return ResponseEntity.status(HttpStatus.OK).body(findCategoryUseCase.findTypeByUserId(userId));
   }
 }
