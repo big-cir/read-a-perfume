@@ -14,10 +14,7 @@ public class AsyncConfiguration implements AsyncConfigurer {
 
   @Override
   public Executor getAsyncExecutor() {
-    // ThreadPoolExecutor threadPoolExecutor = new ThreadPoolExecutor();
     ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-
-    // 스레드 풀 핵심 설정 : CorePoolSize() & MaximumPoolSize
     executor.setCorePoolSize(5);
     executor.setMaxPoolSize(8);
     executor.setQueueCapacity(100);

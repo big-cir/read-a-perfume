@@ -20,7 +20,6 @@ public class RedisSubscriber implements MessageListener {
     private final EmitterRepository emitterRepository;
     private final ObjectMapper objectMapper;
 
-    // subscribe 해두었던 topic 에 publish 가 일어나면 메서드가 호출된다. 여기서 client 에게 이벤트를 전송한다.
     @Override
     public void onMessage(Message message, byte[] pattern) {
         try {

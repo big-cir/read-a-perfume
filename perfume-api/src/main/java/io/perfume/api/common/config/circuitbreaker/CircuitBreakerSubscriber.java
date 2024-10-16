@@ -5,6 +5,7 @@ import org.springframework.data.redis.connection.Message;
 import org.springframework.data.redis.connection.MessageListener;
 import org.springframework.stereotype.Service;
 
+@Deprecated
 @Service
 public class CircuitBreakerSubscriber implements MessageListener {
 

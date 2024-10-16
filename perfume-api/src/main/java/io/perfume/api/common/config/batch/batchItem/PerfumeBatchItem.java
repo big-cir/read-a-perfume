@@ -43,7 +43,6 @@ public class PerfumeBatchItem {
         return new ItemProcessor<Perfume, Perfume>() {
             @Override
             public Perfume process(Perfume item) throws Exception {
-                // <1, 2> 1 -> 2로 데이터 가공
                 return new Perfume(item);
             }
         };
@@ -52,7 +51,6 @@ public class PerfumeBatchItem {
     public FlatFileItemReader<Perfume> perfumeItemReader() {
         return new FlatFileItemReaderBuilder<Perfume>()
                 .name("perfumeItemReader")
-                // 해당 위치의 파일을 읽음
                 .resource(new FileSystemResource("src/main/resources/perfume_data(3).csv"))
                 .linesToSkip(1)
                 .lineMapper(lineMapper.mapper(perfumeFieldSetMapper))
