@@ -1,6 +1,7 @@
 package io.perfume.api.common.config.redis;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.perfume.api.common.decorator.RedisEventSubscriber;
 import io.perfume.api.notification.application.port.in.dto.NotificationResult;
 import io.perfume.api.notification.application.port.in.dto.SendNotificationResult;
 import io.perfume.api.notification.application.port.out.emitter.EmitterRepository;
@@ -13,7 +14,7 @@ import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.io.IOException;
 
-@Service
+@RedisEventSubscriber
 @RequiredArgsConstructor
 public class RedisSubscriber implements MessageListener {
 
