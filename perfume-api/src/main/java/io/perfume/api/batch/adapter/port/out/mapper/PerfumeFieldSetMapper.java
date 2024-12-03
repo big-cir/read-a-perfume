@@ -9,15 +9,15 @@ import org.springframework.stereotype.Component;
 @Component
 public class PerfumeFieldSetMapper implements FieldSetMapper<Perfume> {
 
-    @NotNull
-    @Override
-    public Perfume mapFieldSet(FieldSet fieldSet) {
-        return Perfume.builder()
-                .id(fieldSet.readLong(0))
-                .name(fieldSet.readString(1))
-                // .brandId(fieldSet.readString(2))
-                // .description(fieldSet.readString(3))
-                // .thumbnailId(fieldSet.readString(4))
-                .build();
-    }
+  @NotNull
+  @Override
+  public Perfume mapFieldSet(FieldSet fieldSet) {
+    return Perfume.builder()
+        .id(fieldSet.readLong(0))
+        .name(fieldSet.readString(1))
+        // .brandId(fieldSet.readString(2))
+        // .description(fieldSet.readString(3))
+        // .thumbnailId(fieldSet.readString(4))
+        .build();
+  }
 }

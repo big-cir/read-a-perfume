@@ -23,43 +23,43 @@ import org.springframework.transaction.PlatformTransactionManager;
 @RequiredArgsConstructor
 public class BrandBatchItem {
 
-    private final BrandRepository brandRepository;
+  private final BrandRepository brandRepository;
 
-    private final BrandFieldSetMapper brandFieldSetMapper;
+  private final BrandFieldSetMapper brandFieldSetMapper;
 
-    private final CustomLineMapper lineMapper;
+  private final CustomLineMapper lineMapper;
 
-    private final BrandMapper brandMapper;
+  private final BrandMapper brandMapper;
 
-    public Step fileReadStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
-        return new StepBuilder("fileReadStep", jobRepository)
-                .<Brand, BrandEntity>chunk(1000, transactionManager)
-                .reader(brandItemReader())
-                .processor(itemProcessor())
-                .writer(brandWriter())
-                .build();
-    }
+  public Step fileReadStep(
+      JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+    return new StepBuilder("fileReadStep", jobRepository)
+        .<Brand, BrandEntity>chunk(1000, transactionManager)
+        .reader(brandItemReader())
+        .processor(itemProcessor())
+        .writer(brandWriter())
+        .build();
+  }
 
-    public ItemWriter<? super BrandEntity> brandWriter() {
-        return brandRepository::saveAll;
-    }
+  public ItemWriter<? super BrandEntity> brandWriter() {
+    return brandRepository::saveAll;
+  }
 
-    public ItemProcessor<Brand, BrandEntity> itemProcessor() {
-        return new ItemProcessor<Brand, BrandEntity>() {
-            @Override
-            public BrandEntity process(@NotNull Brand brand) {
-                return brandMapper.toEntity(brand);
-            }
-        };
-    }
+  public ItemProcessor<Brand, BrandEntity> itemProcessor() {
+    return new ItemProcessor<Brand, BrandEntity>() {
+      @Override
+      public BrandEntity process(@NotNull Brand brand) {
+        return brandMapper.toEntity(brand);
+      }
+    };
+  }
 
-    public FlatFileItemReader<Brand> brandItemReader() {
-        return new FlatFileItemReaderBuilder<Brand>()
-                .name("brandItemReader")
-                .resource(new FileSystemResource(
-                        "perfume-api/src/main/resources/csv/brands.csv"))
-                .linesToSkip(1)
-                .lineMapper(lineMapper.mapper(brandFieldSetMapper))
-                .build();
-    }
+  public FlatFileItemReader<Brand> brandItemReader() {
+    return new FlatFileItemReaderBuilder<Brand>()
+        .name("brandItemReader")
+        .resource(new FileSystemResource("perfume-api/src/main/resources/csv/brands.csv"))
+        .linesToSkip(1)
+        .lineMapper(lineMapper.mapper(brandFieldSetMapper))
+        .build();
+  }
 }

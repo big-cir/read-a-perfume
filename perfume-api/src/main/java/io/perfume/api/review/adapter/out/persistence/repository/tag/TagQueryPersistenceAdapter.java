@@ -24,7 +24,7 @@ public class TagQueryPersistenceAdapter implements TagQueryRepository {
   @Override
   public List<Tag> findByIds(List<Long> ids) {
     return jpaQueryFactory.selectFrom(tagEntity).where(tagEntity.id.in(ids)).fetch().stream()
-            .map(tagMapper::toDomain)
-            .toList();
+        .map(tagMapper::toDomain)
+        .toList();
   }
 }

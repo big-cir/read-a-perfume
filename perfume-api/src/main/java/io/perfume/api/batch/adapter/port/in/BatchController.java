@@ -35,9 +35,8 @@ public class BatchController {
     // job 이름 빈 탐색
     Job job = jobRegistry.getJob(request.jobName());
 
-    JobParameters jobParameters = new JobParametersBuilder(jobExplorer)
-            .getNextJobParameters(job)
-            .toJobParameters();
+    JobParameters jobParameters =
+        new JobParametersBuilder(jobExplorer).getNextJobParameters(job).toJobParameters();
 
     return jobLauncher.run(job, jobParameters).getExitStatus();
   }

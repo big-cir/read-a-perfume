@@ -15,7 +15,8 @@ public class SendNotificationServiceV2 implements SendNotificationUseCase {
   private final EmitterRepository emitterRepository;
   private final RedisPublisher redisPublisher;
 
-  public SendNotificationServiceV2(EmitterRepository emitterRepository, RedisPublisher redisPublisher) {
+  public SendNotificationServiceV2(
+      EmitterRepository emitterRepository, RedisPublisher redisPublisher) {
     this.emitterRepository = emitterRepository;
     this.redisPublisher = redisPublisher;
   }

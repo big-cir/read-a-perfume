@@ -3,12 +3,11 @@ package io.perfume.api.brand.adapter.out.persistence.brand;
 import io.perfume.api.base.PersistenceAdapter;
 import io.perfume.api.brand.application.port.out.BrandRepository;
 import io.perfume.api.brand.domain.Brand;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.batch.item.Chunk;
 import org.springframework.util.Assert;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @PersistenceAdapter
 @RequiredArgsConstructor

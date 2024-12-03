@@ -5,6 +5,7 @@ import lombok.Getter;
 import org.springframework.data.domain.PageImpl;
 
 @Getter
+// @NoArgsConstructor
 public class CustomPage<T> {
   private final List<T> content;
   private final boolean first;
@@ -14,6 +15,15 @@ public class CustomPage<T> {
   private final long totalElements;
   private final int pageNumber;
   private final int size;
+
+  //  private List<T> content;
+  //  private boolean first;
+  //  private boolean last;
+  //  private boolean hasNext;
+  //  private int totalPages;
+  //  private long totalElements;
+  //  private int pageNumber;
+  //  private int size;
 
   public CustomPage(PageImpl<T> pageImpl) {
     this.content = pageImpl.getContent();

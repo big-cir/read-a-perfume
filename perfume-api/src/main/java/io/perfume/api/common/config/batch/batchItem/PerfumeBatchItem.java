@@ -1,25 +1,25 @@
-//package io.perfume.api.common.config.batch.batchItem;//package io.perfume.api.common.batchItem;
+// package io.perfume.api.common.config.batch.batchItem;//package io.perfume.api.common.batchItem;
 //
-//import io.perfume.api.batch.adapter.port.out.mapper.CustomLineMapper;
-//import io.perfume.api.batch.adapter.port.out.mapper.PerfumeFieldSetMapper;
-//import io.perfume.api.perfume.application.port.out.PerfumeRepository;
-//import io.perfume.api.perfume.domain.Perfume;
-//import lombok.RequiredArgsConstructor;
-//import org.springframework.batch.core.Step;
-//import org.springframework.batch.core.repository.JobRepository;
-//import org.springframework.batch.core.step.builder.StepBuilder;
-//import org.springframework.batch.item.ItemProcessor;
-//import org.springframework.batch.item.ItemWriter;
-//import org.springframework.batch.item.file.FlatFileItemReader;
-//import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
-//import org.springframework.core.io.FileSystemResource;
-//import org.springframework.stereotype.Component;
-//import org.springframework.stereotype.Service;
-//import org.springframework.transaction.PlatformTransactionManager;
+// import io.perfume.api.batch.adapter.port.out.mapper.CustomLineMapper;
+// import io.perfume.api.batch.adapter.port.out.mapper.PerfumeFieldSetMapper;
+// import io.perfume.api.perfume.application.port.out.PerfumeRepository;
+// import io.perfume.api.perfume.domain.Perfume;
+// import lombok.RequiredArgsConstructor;
+// import org.springframework.batch.core.Step;
+// import org.springframework.batch.core.repository.JobRepository;
+// import org.springframework.batch.core.step.builder.StepBuilder;
+// import org.springframework.batch.item.ItemProcessor;
+// import org.springframework.batch.item.ItemWriter;
+// import org.springframework.batch.item.file.FlatFileItemReader;
+// import org.springframework.batch.item.file.builder.FlatFileItemReaderBuilder;
+// import org.springframework.core.io.FileSystemResource;
+// import org.springframework.stereotype.Component;
+// import org.springframework.stereotype.Service;
+// import org.springframework.transaction.PlatformTransactionManager;
 //
-//@Component
-//@RequiredArgsConstructor
-//public class PerfumeBatchItem {
+// @Component
+// @RequiredArgsConstructor
+// public class PerfumeBatchItem {
 //
 //    private final PerfumeFieldSetMapper perfumeFieldSetMapper;
 //
@@ -27,7 +27,8 @@
 //
 //    private final PerfumeRepository perfumeRepository;
 //
-//    public Step fileReadStep(JobRepository jobRepository, PlatformTransactionManager transactionManager) {
+//    public Step fileReadStep(JobRepository jobRepository, PlatformTransactionManager
+// transactionManager) {
 //        return new StepBuilder("fileReadStep", jobRepository)
 //                .<Perfume, Perfume>chunk(10, transactionManager)
 //                .reader(perfumeItemReader())
@@ -56,4 +57,4 @@
 //                .lineMapper(lineMapper.mapper(perfumeFieldSetMapper))
 //                .build();
 //    }
-//}
+// }

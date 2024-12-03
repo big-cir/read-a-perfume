@@ -41,9 +41,9 @@ public class ReviewTagService {
 
   public void deleteReviewTag(Long reviewId, LocalDateTime now) {
     var reviewTags =
-            reviewTagQueryRepository.findReviewTags(reviewId).stream()
-                    .peek(reviewTag -> reviewTag.markDelete(now))
-                    .toList();
+        reviewTagQueryRepository.findReviewTags(reviewId).stream()
+            .peek(reviewTag -> reviewTag.markDelete(now))
+            .toList();
 
     reviewTagRepository.saveAll(reviewTags);
   }
@@ -60,12 +60,12 @@ public class ReviewTagService {
     final List<ReviewTag> reviewTags = reviewTagQueryRepository.findReviewsTags(reviewIds);
     final List<Long> tagIds = reviewTags.stream().map(ReviewTag::getTagId).toList();
     final Map<Long, ReviewTag> reviewTagMap =
-            reviewTags.stream()
-                    .collect(Collectors.toMap(ReviewTag::getTagId, Function.identity(), (a, b) -> a));
+        reviewTags.stream()
+            .collect(Collectors.toMap(ReviewTag::getTagId, Function.identity(), (a, b) -> a));
 
     return tagQueryRepository.findByIds(tagIds).stream()
-            .map(toReviewTagResult(reviewTagMap))
-            .toList();
+        .map(toReviewTagResult(reviewTagMap))
+        .toList();
   }
 
   private Function<Tag, ReviewTagResult> toReviewTagResult(final Map<Long, ReviewTag> reviewTags) {

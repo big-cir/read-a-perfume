@@ -9,5 +9,4 @@ import org.springframework.stereotype.Service;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Service
-public @interface RedisEventSubscriber {
-}
+public @interface RedisEventSubscriber {}

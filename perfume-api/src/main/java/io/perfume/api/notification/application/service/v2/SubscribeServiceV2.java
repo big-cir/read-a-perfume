@@ -3,6 +3,7 @@ package io.perfume.api.notification.application.service.v2;
 import io.perfume.api.common.config.redis.RedisSubscriber;
 import io.perfume.api.notification.application.port.in.SubscribeUseCase;
 import io.perfume.api.notification.application.port.out.emitter.EmitterRepository;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.redis.listener.ChannelTopic;
 import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,10 @@ public class SubscribeServiceV2 implements SubscribeUseCase {
   private final RedisSubscriber subscriber;
   private final RedisMessageListenerContainer container;
 
-  public SubscribeServiceV2(EmitterRepository emitterRepository, RedisSubscriber subscriber, RedisMessageListenerContainer container) {
+  public SubscribeServiceV2(
+      EmitterRepository emitterRepository,
+      RedisSubscriber subscriber,
+      @Qualifier("RedisMessageListener") RedisMessageListenerContainer container) {
     this.emitterRepository = emitterRepository;
     this.subscriber = subscriber;
     this.container = container;

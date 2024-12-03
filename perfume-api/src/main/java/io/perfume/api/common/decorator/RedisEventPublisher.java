@@ -9,5 +9,4 @@ import org.springframework.stereotype.Component;
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
 @Component
-public @interface RedisEventPublisher {
-}
+public @interface RedisEventPublisher {}

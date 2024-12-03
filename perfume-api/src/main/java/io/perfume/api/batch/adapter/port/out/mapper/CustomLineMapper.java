@@ -8,14 +8,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class CustomLineMapper {
-    public <T> LineMapper<T> mapper(FieldSetMapper<T> mapper) {
-        DefaultLineMapper<T> lineMapper = new DefaultLineMapper<>();
-        DelimitedLineTokenizer lineTokenizer = new DelimitedLineTokenizer();
+  public <T> LineMapper<T> mapper(FieldSetMapper<T> mapper) {
+    DefaultLineMapper<T> lineMapper = new DefaultLineMapper<>();
+    DelimitedLineTokenizer lineTokenizer = new DelimitedLineTokenizer();
 
-        lineTokenizer.setDelimiter(",");
-        lineTokenizer.setStrict(false);
-        lineMapper.setLineTokenizer(lineTokenizer);
-        lineMapper.setFieldSetMapper(mapper);
-        return lineMapper;
-    }
+    lineTokenizer.setDelimiter(",");
+    lineTokenizer.setStrict(false);
+    lineMapper.setLineTokenizer(lineTokenizer);
+    lineMapper.setFieldSetMapper(mapper);
+    return lineMapper;
+  }
 }

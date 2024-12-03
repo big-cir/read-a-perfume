@@ -20,8 +20,8 @@ public class BatchConfig {
   @Bean
   public Job brandFileReadAndWriteJob(PlatformTransactionManager transactionManager) {
     return new JobBuilder("brand-csv-data", jobRepository)
-            .incrementer(new RunIdIncrementer())
-            .start(brandBatchItem.fileReadStep(jobRepository, transactionManager))
-            .build();
+        .incrementer(new RunIdIncrementer())
+        .start(brandBatchItem.fileReadStep(jobRepository, transactionManager))
+        .build();
   }
 }

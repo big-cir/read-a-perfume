@@ -3,7 +3,6 @@ package io.perfume.api.brand.application.port.in;
 import io.perfume.api.brand.application.port.in.dto.BrandForPerfumeResult;
 import io.perfume.api.brand.application.port.in.dto.BrandResult;
 import io.perfume.api.brand.application.port.in.dto.GetBrandPageResult;
-import io.perfume.api.brand.application.port.in.dto.GetBrandResult;
 import io.perfume.api.brand.application.port.in.dto.GetPaginatedBrandCommand;
 import io.perfume.api.common.page.CustomPage;
 

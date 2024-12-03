@@ -39,7 +39,7 @@ public class CategoryPersistenceAdapter implements CategoryRepository {
       return;
     }
     List<CategoryUserJpaEntity> categoryUserJpaEntities =
-            categoryUsers.stream().map(categoryUserMapper::toEntity).toList();
+        categoryUsers.stream().map(categoryUserMapper::toEntity).toList();
     categoryUserJpaRepository.saveAll(categoryUserJpaEntities);
   }
 }

@@ -9,33 +9,29 @@ import java.time.LocalDateTime;
 
 public record GetBrandPageResult(
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    LocalDateTime createdAt,
-
+        @JsonSerialize(using = LocalDateTimeSerializer.class)
+        LocalDateTime createdAt,
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    LocalDateTime updatedAt,
-
+        @JsonSerialize(using = LocalDateTimeSerializer.class)
+        LocalDateTime updatedAt,
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
-    @JsonSerialize(using = LocalDateTimeSerializer.class)
-    LocalDateTime deleteAt,
+        @JsonSerialize(using = LocalDateTimeSerializer.class)
+        LocalDateTime deleteAt,
     Long id,
     String name,
     String story,
     String brandUrl,
-    Long thumbnailId
-) {
+    Long thumbnailId) {
 
-    public static GetBrandPageResult from(Brand brand) {
-        return new GetBrandPageResult(
-            brand.getCreatedAt(),
-            brand.getUpdatedAt(),
-            brand.getDeletedAt(),
-            brand.getId(),
-            brand.getName(),
-            brand.getStory(),
-            brand.getBrandUrl(),
-            brand.getThumbnailId()
-        );
-    }
+  public static GetBrandPageResult from(Brand brand) {
+    return new GetBrandPageResult(
+        brand.getCreatedAt(),
+        brand.getUpdatedAt(),
+        brand.getDeletedAt(),
+        brand.getId(),
+        brand.getName(),
+        brand.getStory(),
+        brand.getBrandUrl(),
+        brand.getThumbnailId());
+  }
 }

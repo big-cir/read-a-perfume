@@ -2,18 +2,14 @@ package io.perfume.api.brand.adapter.out.persistence.brand;
 
 import io.perfume.api.base.BaseTimeEntity;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import lombok.*;
 
 @Entity()
 @Table(
-        name = "brand",
-        indexes = {
-                @Index(name = "idx_brand_name", columnList = "name")
-        }
-)
+    name = "brand",
+    indexes = {@Index(name = "idx_brand_name", columnList = "name")})
 @NoArgsConstructor(access = AccessLevel.PROTECTED, force = true)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true, callSuper = false)
 @ToString(onlyExplicitlyIncluded = true)

@@ -1,6 +1,7 @@
 package io.perfume.api.common.config.redis;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.time.Duration;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
@@ -15,8 +16,6 @@ import org.springframework.data.redis.listener.RedisMessageListenerContainer;
 import org.springframework.data.redis.repository.configuration.EnableRedisRepositories;
 import org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
-
-import java.time.Duration;
 
 @Configuration
 @EnableRedisRepositories
@@ -48,13 +47,10 @@ public class RedisConfiguration {
     redisStandaloneConfiguration.setPort(pPort);
     redisStandaloneConfiguration.setPassword(pPassword);
 
-    LettuceClientConfiguration lettuceClientConfiguration = LettuceClientConfiguration.builder()
-            .commandTimeout(Duration.ofMillis(5L))
-            .build();
+    LettuceClientConfiguration lettuceClientConfiguration =
+        LettuceClientConfiguration.builder().commandTimeout(Duration.ofMillis(5L)).build();
 
-    return new LettuceConnectionFactory(
-            redisStandaloneConfiguration,
-            lettuceClientConfiguration);
+    return new LettuceConnectionFactory(redisStandaloneConfiguration, lettuceClientConfiguration);
   }
 
   @Bean
@@ -65,25 +61,41 @@ public class RedisConfiguration {
   }
 
   @Bean
+  public RedisMessageListenerContainer RedisCacheMessageListener() {
+    RedisMessageListenerContainer container = new RedisMessageListenerContainer();
+    container.setConnectionFactory(redisCacheConnectionFactory());
+    return container;
+  }
+
+  @Bean
   public RedisConnectionFactory redisCacheConnectionFactory() {
     RedisStandaloneConfiguration redisStandaloneConfiguration = new RedisStandaloneConfiguration();
     redisStandaloneConfiguration.setHostName(host);
     redisStandaloneConfiguration.setPort(port);
     redisStandaloneConfiguration.setPassword(password);
 
-    LettuceClientConfiguration lettuceClientConfiguration = LettuceClientConfiguration.builder()
+    LettuceClientConfiguration lettuceClientConfiguration =
+        LettuceClientConfiguration.builder()
             .commandTimeout(Duration.ofSeconds(1)) // 해당 부분에서 타임아웃을 설정
             .build();
 
-    return new LettuceConnectionFactory(
-            redisStandaloneConfiguration,
-            lettuceClientConfiguration);
+    return new LettuceConnectionFactory(redisStandaloneConfiguration, lettuceClientConfiguration);
   }
 
   @Bean
   public RedisTemplate<?, ?> redisTemplate() {
     RedisTemplate<?, ?> redisTemplate = new RedisTemplate<>();
     redisTemplate.setConnectionFactory(redisConnectionFactory());
+    redisTemplate.setKeySerializer(new StringRedisSerializer());
+    redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer(new ObjectMapper()));
+    redisTemplate.afterPropertiesSet();
+    return redisTemplate;
+  }
+
+  @Bean
+  public RedisTemplate<?, ?> cacheRedisTemplate() {
+    RedisTemplate<?, ?> redisTemplate = new RedisTemplate<>();
+    redisTemplate.setConnectionFactory(redisCacheConnectionFactory());
     redisTemplate.setKeySerializer(new StringRedisSerializer());
     redisTemplate.setValueSerializer(new GenericJackson2JsonRedisSerializer(new ObjectMapper()));
     redisTemplate.afterPropertiesSet();

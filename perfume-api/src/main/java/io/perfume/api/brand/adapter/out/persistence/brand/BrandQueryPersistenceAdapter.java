@@ -52,21 +52,23 @@ public class BrandQueryPersistenceAdapter implements BrandQueryRepository {
   }
 
   private List<Brand> findFetchBrands(final Pageable pageable) {
-    return jpaQueryFactory.selectFrom(brandEntity)
-            .where(brandEntity.deletedAt.isNull())
-            .orderBy(brandEntity.id.asc())
-            .offset(pageable.getOffset())
-            .limit(pageable.getPageSize())
-            .fetch()
-            .stream()
-            .map(brandMapper::toDomain)
-            .toList();
+    return jpaQueryFactory
+        .selectFrom(brandEntity)
+        .where(brandEntity.deletedAt.isNull())
+        .orderBy(brandEntity.id.asc())
+        .offset(pageable.getOffset())
+        .limit(pageable.getPageSize())
+        .fetch()
+        .stream()
+        .map(brandMapper::toDomain)
+        .toList();
   }
 
   private Long countBrands() {
-    return jpaQueryFactory.select(brandEntity.count())
-            .from(brandEntity)
-            .where(brandEntity.deletedAt.isNull())
-            .fetchOne();
+    return jpaQueryFactory
+        .select(brandEntity.count())
+        .from(brandEntity)
+        .where(brandEntity.deletedAt.isNull())
+        .fetchOne();
   }
 }

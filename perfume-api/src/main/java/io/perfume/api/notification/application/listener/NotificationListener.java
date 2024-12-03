@@ -5,8 +5,6 @@ import io.perfume.api.review.application.facade.dto.ReviewCommentEvent;
 import io.perfume.api.review.application.facade.dto.ReviewLikeEvent;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.event.TransactionalEventListener;
 
 @Component

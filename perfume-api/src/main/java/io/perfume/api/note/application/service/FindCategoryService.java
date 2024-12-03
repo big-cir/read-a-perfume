@@ -20,46 +20,46 @@ public class FindCategoryService implements FindCategoryUseCase {
   @Override
   public List<CategoryResult> findCategories() {
     return categoryQueryRepository.find().stream()
-            .map(
-                    category -> {
-                      String thumbnail =
-                              findFileUseCase
-                                      .findFileById(category.getThumbnailId())
-                                      .orElse(File.createFile("", null, null))
-                                      .getUrl();
-                      return CategoryResult.from(category, thumbnail);
-                    })
-            .toList();
+        .map(
+            category -> {
+              String thumbnail =
+                  findFileUseCase
+                      .findFileById(category.getThumbnailId())
+                      .orElse(File.createFile("", null, null))
+                      .getUrl();
+              return CategoryResult.from(category, thumbnail);
+            })
+        .toList();
   }
 
   @Override
   public CategoryResult findCategoryById(Long id) {
     return categoryQueryRepository
-            .findById(id)
-            .map(
-                    category -> {
-                      String thumbnail =
-                              findFileUseCase
-                                      .findFileById(category.getThumbnailId())
-                                      .orElse(File.createFile("", null, null))
-                                      .getUrl();
-                      return CategoryResult.from(category, thumbnail);
-                    })
-            .orElseThrow(() -> new NotFoundNoteException(id));
+        .findById(id)
+        .map(
+            category -> {
+              String thumbnail =
+                  findFileUseCase
+                      .findFileById(category.getThumbnailId())
+                      .orElse(File.createFile("", null, null))
+                      .getUrl();
+              return CategoryResult.from(category, thumbnail);
+            })
+        .orElseThrow(() -> new NotFoundNoteException(id));
   }
 
   @Override
   public List<CategoryResult> findTypeByUserId(Long id) {
     return categoryQueryRepository.findCategoryUserByUserId(id).stream()
-            .map(
-                    category -> {
-                      String thumbnail =
-                              findFileUseCase
-                                      .findFileById(category.getThumbnailId())
-                                      .orElse(File.createFile("", null, null))
-                                      .getUrl();
-                      return CategoryResult.from(category, thumbnail);
-                    })
-            .toList();
+        .map(
+            category -> {
+              String thumbnail =
+                  findFileUseCase
+                      .findFileById(category.getThumbnailId())
+                      .orElse(File.createFile("", null, null))
+                      .getUrl();
+              return CategoryResult.from(category, thumbnail);
+            })
+        .toList();
   }
 }

@@ -2,9 +2,8 @@ package io.perfume.api.brand.application.port.out;
 
 import io.perfume.api.brand.adapter.out.persistence.brand.BrandEntity;
 import io.perfume.api.brand.domain.Brand;
-import org.springframework.batch.item.Chunk;
-
 import java.util.List;
+import org.springframework.batch.item.Chunk;
 
 public interface BrandRepository {
   Brand save(Brand brand);
@@ -13,5 +12,4 @@ public interface BrandRepository {
 
   // List<BrandEntity>
   void saveAll(Chunk<? extends BrandEntity> brands);
-
 }

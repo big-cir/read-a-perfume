@@ -6,10 +6,10 @@ import lombok.Data;
 
 @Data
 public class GetBrandsRequestDto {
-        @Min(1)
-        Integer page = 1;
+  @Min(1)
+  Integer page = 1;
 
-        @Min(1)
-        @Max(20)
-        Integer size = 20;
+  @Min(1)
+  @Max(20)
+  Integer size = 20;
 }
