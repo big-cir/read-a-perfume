@@ -122,10 +122,10 @@ resilience4j:
     configs:
       default:
         wait-duration-in-open-state:
-          seconds: 10000
+          seconds: 60
         slidingWindowType: COUNT_BASED
-        slidingWindowSize: 10
-        failureRateThreshold: 50
+        slidingWindowSize: 20
+        failureRateThreshold: 60
         permittedNumberOfCallsInHalfOpenState: 5
         registerHealthIndicator: true
 
