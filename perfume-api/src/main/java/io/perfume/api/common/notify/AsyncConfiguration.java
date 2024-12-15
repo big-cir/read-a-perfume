@@ -1,4 +1,4 @@
-package io.perfume.api.common.config;
+package io.perfume.api.common.notify;
 
 import java.util.concurrent.Executor;
 import org.springframework.context.annotation.Configuration;
